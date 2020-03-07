@@ -13,6 +13,7 @@ def set_params(args):
     elif args.dataset in ["UP", "DUP", "DUPr"]:  args.n_est = 200; args.m_s_split = 2; args.max_feat = 40; args.depth = 60
     elif args.dataset == "SV":  args.n_est = 200; args.m_s_split = 2; args.max_feat = 10; args.depth = 10
     elif args.dataset == "UH":  args.n_est = 200; args.m_s_split = 2; args.max_feat = 8; args.depth = 20
+    elif args.dataset == "KSC": args.n_est = 200; args.m_s_split = 2; args.max_feat = 40; args.depth = 60
     return args
 
 

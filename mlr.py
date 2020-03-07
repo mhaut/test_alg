@@ -13,6 +13,7 @@ def set_params(args):
     elif args.dataset in ["UP", "DUP", "DUPr"]: args.C = 10
     elif args.dataset == "SV": args.C = 10
     elif args.dataset == "UH": args.C = 83 # best result C=1e5 and preprocess minmax
+    elif args.dataset == "KSC": args.C = 100
     else: print("ERROR params"); exit()
     return args
 

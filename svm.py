@@ -13,6 +13,7 @@ def set_params(args):
     elif args.dataset in ["UP", "DUP", "DUPr"]:  args.C = 1e3; args.g = 2
     elif args.dataset == "SV":  args.C = 1e3; args.g = 0.25
     elif args.dataset == "UH":  args.C = 1e5; args.g = 0.03125
+    elif args.dataset == "KSC":  args.C = 1000000; args.g = 0.00390625
     return args
 
 
