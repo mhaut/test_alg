@@ -44,3 +44,30 @@ do
     python -u cnn2d.py --dataset UH --idtest $idte --components 40 --use_val
     python -u cnn3d.py --dataset UH --idtest $idte --components 40 --use_val
 done
+
+
+for idte in 0 1 2 3 4
+do
+    for dataset in IP KSC UP
+    do
+        for dataset in 0.01 0.05 0.10 0.15 0.20
+        do
+            CUDA_VISIBLE_DEVICES='' python -u mlp.py --dataset $dataset --idtest $idte --tr_percent $tper --use_val
+            CUDA_VISIBLE_DEVICES='' python -u recurrent.py --dataset $dataset --idtest $idte --tr_percent $tper --type_recurrent RNN --use_val
+            CUDA_VISIBLE_DEVICES='' python -u recurrent.py --dataset $dataset --idtest $idte --tr_percent $tper --type_recurrent GRU --use_val
+            CUDA_VISIBLE_DEVICES='' python -u recurrent.py --dataset $dataset --idtest $idte --tr_percent $tper --type_recurrent LSTM --use_val
+            CUDA_VISIBLE_DEVICES='' python -u cnn1d.py --dataset $dataset --idtest $idte --tr_percent $tper --use_val
+            CUDA_VISIBLE_DEVICES='' python -u cnn2d.py --dataset $dataset --idtest $idte --tr_percent $tper --components 1 --use_val
+            CUDA_VISIBLE_DEVICES='' python -u cnn2d.py --dataset $dataset --idtest $idte --tr_percent $tper --components 40 --use_val
+            CUDA_VISIBLE_DEVICES='' python -u cnn3d.py --dataset $dataset --idtest $idte --tr_percent $tper --components 40 --use_val
+        done
+    done
+    CUDA_VISIBLE_DEVICES='' python -u mlp.py --dataset UH --idtest $idte --use_val
+    CUDA_VISIBLE_DEVICES='' python -u recurrent.py --dataset UH --idtest $idte --type_recurrent RNN --use_val
+    CUDA_VISIBLE_DEVICES='' python -u recurrent.py --dataset UH --idtest $idte --type_recurrent GRU --use_val
+    CUDA_VISIBLE_DEVICES='' python -u recurrent.py --dataset UH --idtest $idte --type_recurrent LSTM --use_val
+    CUDA_VISIBLE_DEVICES='' python -u cnn1d.py --dataset UH --idtest $idte --use_val
+    CUDA_VISIBLE_DEVICES='' python -u cnn2d.py --dataset UH --idtest $idte --components 1 --use_val
+    CUDA_VISIBLE_DEVICES='' python -u cnn2d.py --dataset UH --idtest $idte --components 40 --use_val
+    CUDA_VISIBLE_DEVICES='' python -u cnn3d.py --dataset UH --idtest $idte --components 40 --use_val
+done
